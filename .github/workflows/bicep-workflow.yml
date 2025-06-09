@@ -22,6 +22,6 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ fromJson(secrets.AZURE_CREDENTIALS).subscriptionId }}
-        resourceGroupName: 'myResourceGroup'  # Replace or create this resource group
-        template: ./main.bicep
+        resourceGroupName: 'testRG'  # Replace or create this resource group
+        template: ./src/main.bicep
         parameters: storageAccountName=teststc
