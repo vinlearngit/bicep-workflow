@@ -6,8 +6,16 @@ on:
       - main
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run Bicep linter
+      run: az bicep build --file src/main.bicep
+
   deploy:
     runs-on: ubuntu-latest
+    needs: [lint]
 
     steps:
     - name: Checkout code
