@@ -11,7 +11,23 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run Bicep linter
-      run: az bicep build --file src/main.bicep
+      run: az bicep build --file src/main.
+  
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: azure/login@v1
+      name: Sign in to Azure
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+    - uses: azure/arm-deploy@v1
+      name: Run preflight validation
+      with:
+        deploymentName: ${{ github.run_number }}
+        resourceGroupName: 'testRG'
+        template: ./src/main.bicep
+        deploymentMode: Validate
 
   deploy:
     runs-on: ubuntu-latest
@@ -32,4 +48,4 @@ jobs:
         subscriptionId: ${{ fromJson(secrets.AZURE_CREDENTIALS).subscriptionId }}
         resourceGroupName: 'testRG'  # Replace or create this resource group
         template: ./src/main.bicep
-        parameters: storageAccountName=teststcvin123
+        parameters: storageAccountName=teststcvin1235678901
