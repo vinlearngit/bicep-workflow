@@ -49,3 +49,5 @@ jobs:
         resourceGroupName: 'testRG'  # Replace or create this resource group
         template: ./src/main.bicep
         parameters: storageAccountName=teststcvin1235678
+        deploymentName: ${{ github.run_id }}
+
