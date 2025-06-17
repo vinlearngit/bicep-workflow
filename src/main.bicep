@@ -1,6 +1,5 @@
 param storageAccountName string = 'teststc'
 param location string = 'Central US'
-param test string = 'CCI@Pa$$1'
 
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
