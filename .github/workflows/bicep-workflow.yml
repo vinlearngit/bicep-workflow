@@ -48,4 +48,4 @@ jobs:
         subscriptionId: ${{ fromJson(secrets.AZURE_CREDENTIALS).subscriptionId }}
         resourceGroupName: 'testRG'  # Replace or create this resource group
         template: ./src/main.bicep
-        parameters: storageAccountName=teststcvin1235678901
+        parameters: storageAccountName=teststcvin1235678
