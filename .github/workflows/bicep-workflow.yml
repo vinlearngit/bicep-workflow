@@ -24,7 +24,7 @@ jobs:
       - name: Validate Bicep template
         run: |
           az deployment group validate \
-            --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} \
+            --resource-group testRG \
             --template-file ./src/main.bicep
 
   deploy:
@@ -43,7 +43,7 @@ jobs:
         uses: azure/arm-deploy@v1
         with:
           subscriptionId: ${{ fromJson(secrets.AZURE_CREDENTIALS).subscriptionId }}
-          resourceGroupName: ${{ secrets.AZURE_RESOURCE_GROUP }}
+          resourceGroupName: testRG
           template: ./src/main.bicep
           parameters: storageAccountName=${{ matrix.storageAccountName }}
           deploymentName: ${{ github.run_id }}-${{ matrix.storageAccountName }}
